@@ -1,8 +1,19 @@
+import {useState} from 'react';
+
+console.clear();
+
 const App = () => {
 
-  return(
+  const [text, setText] = useState("11");
+
+  return (
     <div classNmae="App">
-      안녕하세요
+      <input type="text"
+        onChange={({target : { value }}) => {
+          setText(value);
+        }}
+        value={text}
+      />
     </div>
   );
 }
