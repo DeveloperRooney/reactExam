@@ -22,12 +22,22 @@ const App = () => {
     setNewToDO("");
   }
 
+  const toDoDelete = (id) => {
+    setToDoList(toDoList.filter(todo => todo.id != id ))
+  }
+
   let showToDoList = <div>등록된 리스트가 없습니다.</div>
 
   if(toDoList.length != 0) {
     showToDoList = <ul>
-      {toDoList.map((toDo)=> {
-        return <li key={toDo.id}>{toDo.id} {toDo.title}</li>
+      {toDoList.slice(0).reverse().map((toDo)=> {
+        return (
+          <li key={toDo.id}>
+            {toDo.id} {toDo.title}
+            &nbsp;<button onClick={() => toDoDelete(toDo.id)}>삭제</button>
+            &nbsp;<button>수정</button>
+          </li>
+        );
       })}
     </ul>
   }
